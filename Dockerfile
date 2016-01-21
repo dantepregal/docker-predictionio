@@ -40,10 +40,7 @@ RUN sed -i "s|VAR_HBASE_VERSION|${HBASE_VERSION}|" ${PIO_HOME}/vendors/hbase-${H
 RUN ${PIO_HOME}/sbt/sbt -batch
 
 #download Universal Recommendation Template
-RUN git clone https://github.com/PredictionIO/template-scala-parallel-universal-recommendation.git universal
-RUN cd universal
-RUN git checkout tags/v${TEMPLATE_VERSION}
-RUN cd ..
+RUN git clone --branch v${TEMPLATE_VERSION} --single-branch https://github.com/PredictionIO/template-scala-parallel-universal-recommendation.git universal
 
 #expose pio ports to the host
 EXPOSE 8000 70707
