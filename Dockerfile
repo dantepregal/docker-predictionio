@@ -43,6 +43,6 @@ RUN ${PIO_HOME}/sbt/sbt -batch
 RUN git clone --branch v${TEMPLATE_VERSION} --single-branch https://github.com/PredictionIO/template-scala-parallel-universal-recommendation.git universal
 
 #expose pio ports to the host
-EXPOSE 8000 70707
+EXPOSE 8000 7070
 
 ADD files/run.sh /run.sh
