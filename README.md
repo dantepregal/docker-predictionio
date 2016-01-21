@@ -1,7 +1,7 @@
 # PredictionIO docker container
 Docker container for PredictionIO-based machine learning services
 
-[![Docker build](http://dockeri.co/image/sphereio/predictionio)](https://registry.hub.docker.com/u/sphereio/predictionio/)
+[![Docker build](http://dockeri.co/image/dantep/predictionio)](https://registry.hub.docker.com/u/dantep/predictionio/)
 
 [PredictionIO](https://prediction.io) is an open-source Machine Learning
 server for developers and data scientists to build and deploy predictive
@@ -11,7 +11,7 @@ This container uses Apache Spark, HBase and Elasticsearch.
 Use it interactively for development:
 
 ```Bash
-$ docker run -it -v $HOME/MyEngine:/MyEngine sphereio/predictionio /bin/bash
+$ docker run -it -v $HOME/MyEngine:/MyEngine dantep/predictionio /bin/bash
 ```
 
 Or create your own deployable docker container:

@@ -5,12 +5,13 @@ ENV PIO_VERSION 0.9.5
 ENV SPARK_VERSION 1.4.1
 ENV ELASTICSEARCH_VERSION 1.7.4
 ENV HBASE_VERSION 1.1.1
+ENV TEMPLATE_VERSION 0.2.3
 
 ENV PIO_HOME /PredictionIO-${PIO_VERSION}
 ENV PATH=${PIO_HOME}/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
-RUN apt-get update && apt-get install -y curl openjdk-7-jdk libgfortran3 python-pip
+RUN apt-get update && apt-get install -y curl openjdk-7-jdk libgfortran3 python-pip git
 RUN pip install predictionio
 
 RUN curl -O https://d8k1yxp8elc6b.cloudfront.net/PredictionIO-${PIO_VERSION}.tar.gz
@@ -37,3 +38,14 @@ RUN sed -i "s|VAR_HBASE_VERSION|${HBASE_VERSION}|" ${PIO_HOME}/vendors/hbase-${H
 
 #triggers fetching the complete sbt environment
 RUN ${PIO_HOME}/sbt/sbt -batch
+
+#download Universal Recommendation Template
+RUN git clone https://github.com/PredictionIO/template-scala-parallel-universal-recommendation.git universal
+RUN cd universal
+RUN git checkout tags/v${TEMPLATE_VERSION}
+RUN cd ..
+
+#expose pio ports to the host
+EXPOSE 8000 70707
+
+ADD files/run.sh /run.sh
