@@ -45,4 +45,12 @@ RUN git clone --branch v${TEMPLATE_VERSION} --single-branch https://github.com/P
 #expose pio ports to the host
 EXPOSE 8000 7070
 
+#start pio
+RUN pio-start-all
+
+#build the Universal Recommendation Template
+WORKDIR /universal
+RUN pio build --verbose
+
+#copy the script to deploy the engine with nohup
 ADD files/run.sh /run.sh

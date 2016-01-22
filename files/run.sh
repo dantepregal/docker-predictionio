@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e
-
-pio-start-all
 cd /universal
-pio build --verbose
-pio deploy
+nohup pio deploy > universal.out 2>&1&
+echo $! > save_pid.txt
